@@ -24,6 +24,10 @@ def convert_markdown_to_html(input_file, output_file):
 
     html_tags = markdown2.markdown(markdown_texts)
 
+    html_tags = html_tags.replace("# ", "<h1>").replace("## ",
+                                                        "<h2>").replace("### ", "<h3>").replace("#### ", "<h4>").replace("##### ", "<h5>").replace("###### ", "<h6>")
+    html_tags = html_tags.replace("\n", "</h1>\n").replace("</h1>\n<h2>", "</h1>\n\n<h2>").replace("</h2>\n<h3>", "</h2>\n\n<h3>").replace("</h3>\n<h4>", "</h3>\n\n<h4>").replace("</h4>\n<h5>", "</h4>\n\n<h5>").replace("</h5>\n<h6>", "</h5>\n\n<h6>")
+
     with open(output_file, "w") as html_file:
         html_file.write(html_tags)
 
